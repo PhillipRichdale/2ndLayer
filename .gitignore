@@ -5,3 +5,7 @@ org.eclipse.*
 .buildpath
 .settings
 .idea
+/backup
+/sites/default/files/css
+/sites/default/files/js
+/sites/default/files/xmlsitemap
