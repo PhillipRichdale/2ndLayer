@@ -5,6 +5,7 @@ org.eclipse.*
 .buildpath
 .settings
 .idea
+config.php
 /backup
 /sites/default/files/css
 /sites/default/files/js
