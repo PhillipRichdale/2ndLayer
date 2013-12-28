@@ -2,11 +2,13 @@
 ========
 
 2ndLayer is a collection of PHP driven web-centric software development tools
-and libraries for environments running PHP 5.3 and up
+and libraries for environments running PHP 5.3 and up. The prime objective of
+the 2ndLayer project is to provide professional developers with tools that
+significantly speed up day-to-day development work with new and existing projects.
 
 The MIT License (MIT)
 
-Copyright (c) 2013 The 2ndLayer Team & Team Active Content
+Copyright (c) 2013 and onward - The 2ndLayer Team
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -42,6 +44,6 @@ with direct contractors.
 In any douptful situtation where actual ownership may be disputed and no
 WRITTEN contract can be provided, by entities or individuals, to the contributed
 code that PROVE beyond any doubt dual/multiple license and/or dual/multiple
-ownership, the MIT License of the 2ndLayer codase and its subsets takes precedance
+ownership, the MIT License of the 2ndLayer codbase and its subsets takes precedance
 and is henceforth the ONLY license under which said 2ndLayer codebase or subset is
-allowed to be used for the existing sourcecode in question.
+allowed to be used or further developed on for the existing sourcecode in question.
