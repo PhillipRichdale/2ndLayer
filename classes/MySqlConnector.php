@@ -3,7 +3,6 @@
 	Developer: actcontpr, Date: 27.12.13, Time: 22:22
 	This class connects to a mysql database and provides the utility functions
 	required for doing basic analysis and direct processing of the mysql database.
-
 //**/
 
 class MySqlConnector
@@ -31,6 +30,20 @@ class MySqlConnector
 			character_set_server = 'utf8', character_set_filesystem = 'utf8'");
 	}
 
+	public function convertDb2Utf8()
+	{
+		//check if DB is *not* UTF8
+		//check if tables are *not* UTF8
+		//generate temp tables (copies) in UTF8 for moving and converting
+		//copy data from non-UTF8 to UTF8 temp tables
+		//delete original tables
+		//rename temp tables to original name
+		//change DB default
+	}
+	public function setDbDefaultToUtf8()
+	{
+
+	}
 	public function genModel($tNames = false)
 	{
 		if (!$tNames)
@@ -155,7 +168,7 @@ class MySqlConnector
 		}
 		return $rLine;
 	}
-	private function getAttributeList($entity)
+	private function getEntityAttributeList($entity)
 	{
 		$sql = "SHOW COLUMNS FROM $entity";
 		$result = $this->execSql($sql);
