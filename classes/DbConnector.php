@@ -16,9 +16,9 @@ class DbConnector {
 					$dbServerType="mysql",
 					$dbHost="localhost",
 					$dbPort="8889",
-					$dbName="eventcal",
-					$dbUser="StomatopodLocal",
-					$dbPw="LocalStomatopod")
+					$dbName="",
+					$dbUser="",
+					$dbPw="")
 	{
 		$this->dbServerType = $dbServerType;
 		$this->dbHost=$dbHost;
