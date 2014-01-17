@@ -18,8 +18,8 @@ class DbConnector {
 					$dbPort="8889",
 					$dbName="",
 					$dbUser="",
-					$dbPw="")
-	{
+					$dbPw=""
+	){
 		$this->dbServerType = $dbServerType;
 		$this->dbHost=$dbHost;
 		$this->dbPort=$dbPort;
@@ -132,6 +132,7 @@ class DbConnector {
 		$classDef .= '	const ENTITYNAME="'.$entityName.'";'."\n";
 		$classDef .= "	private \$db;\n";
 		$classDef .= $varDef;
+		$classDef .= "\n	public static \$myLabels = $labelsArray";
 		$classDef .= "\n";
 		$classDef .= "	public function __construct(&\$db = false)\n";
 		$classDef .= "	{\n";
@@ -167,11 +168,6 @@ class DbConnector {
 		$classDef .= "	public static function getMyFields()\n";
 		$classDef .= "	{\n";
 		$classDef .= "		return $fieldsArray\n";
-		$classDef .= "	}\n";
-		$classDef .= "\n";
-		$classDef .= "	public static function getMyLabels()\n";
-		$classDef .= "	{\n";
-		$classDef .= "		return $labelsArray\n";
 		$classDef .= "	}\n";
 		$classDef .= "\n";
 		/**
@@ -260,6 +256,7 @@ class DbConnector {
 	private function genInsertSqlCode($attribs)
 	{
 		$rM = '$sql = "INSERT INTO ".self::ENTITYNAME." ("'.";\n";
+		$thisSql = "";
 		foreach(array_keys($attribs) as $attrib)
 		{
 			if ("id" != $attrib)
@@ -286,9 +283,13 @@ class DbConnector {
 	private function getUpdateCode()
 	{
 		return "
-	public function update()
+	public function refresh()
 	{
-		\$sql = \"SELECT * FROM \".self::ENTITYNAME.\" WHERE id=\".\$this->id;
+		\$this->load(\$this->id);
+	}
+	public function load(\$id)
+	{
+		\$sql = \"SELECT * FROM \".self::ENTITYNAME.\" WHERE id=\$id\";
 		\$single = \$this->db->prepare(\$sql);
 		\$single->execute();
 		\$fieldVals = \$single->fetch(PDO::FETCH_ASSOC);
