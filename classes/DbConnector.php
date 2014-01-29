@@ -16,9 +16,9 @@ class DbConnector {
 					$dbServerType="mysql",
 					$dbHost="localhost",
 					$dbPort="8889",
-					$dbName="",
-					$dbUser="",
-					$dbPw=""
+					$dbName="eventcal",
+					$dbUser="StomatopodLocal",
+					$dbPw="LocalStomatopod"
 	){
 		$this->dbServerType = $dbServerType;
 		$this->dbHost=$dbHost;
@@ -43,6 +43,14 @@ class DbConnector {
 	public function getPdoConnection()
 	{
 		return $this->db;
+	}
+	public function errorModeOn()
+	{
+		$this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+	}
+	public function errorModeOff()
+	{
+		$this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_SILENT);
 	}
 	public function genClassesFromDb()
 	{
@@ -297,6 +305,11 @@ class DbConnector {
 		{
 			\$this->{\$field} = \$val;
 		}
+	}
+	public function isNew()
+	{
+		#write your own code for preventing dupe entries here:
+		return true;
 	}";
 	}
 }
