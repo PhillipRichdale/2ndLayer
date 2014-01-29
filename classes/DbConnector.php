@@ -15,10 +15,10 @@ class DbConnector {
 	public function __construct(
 					$dbServerType="mysql",
 					$dbHost="localhost",
-					$dbPort="8889",
-					$dbName="eventcal",
-					$dbUser="StomatopodLocal",
-					$dbPw="LocalStomatopod"
+					$dbPort="",
+					$dbName="",
+					$dbUser="",
+					$dbPw=""
 	){
 		$this->dbServerType = $dbServerType;
 		$this->dbHost=$dbHost;
