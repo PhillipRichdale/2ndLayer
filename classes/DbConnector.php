@@ -134,56 +134,50 @@ class DbConnector {
 		$labelsArray = $this->genLabelArrayCode($attribs);
 		$updateCode = $this->getUpdateCode();
 		
-		$classDef .= "<?php\n";
-		$classDef .= "//2ndLayer autogeneration of classes with DbConnector\n";
-		$classDef .= "class $className {\n";
-		$classDef .= '	const ENTITYNAME="'.$entityName.'";'."\n";
-		$classDef .= "	private \$db;\n";
-		$classDef .= $varDef;
-		$classDef .= "\n	public static \$myLabels = $labelsArray";
-		$classDef .= "\n";
-		$classDef .= "	public function __construct(&\$db = false)\n";
-		$classDef .= "	{\n";
-		$classDef .= "		if(\$db)\n";
-		$classDef .= "		{\n";
-		$classDef .= "			\$this->setDb(\$db);\n";
-		$classDef .= "		}\n";
-		$classDef .= "	}\n";
-		$classDef .= "\n";
-		$classDef .= "	public static function getMyEntityName(){return self::ENTITYNAME;}\n";
-		$classDef .= "	public function getId(){return \$this->id;}\n";
-		$classDef .= "	public function setDb(&\$db){\$this->db=\$db;}\n";
-		$classDef .= "\n";
-		$classDef .= "	public function save()\n";
-		$classDef .= "	{\n";
-		$classDef .= "		\$sql = 'UPDATE '.self::ENTITYNAME.' SET ';\n";
-		$classDef .= "		\$sql .= \"$saveCode\";\n";
-		$classDef .= "		\$sql .=' WHERE id='.\$this->id;\n";
-		$classDef .= "		\$update = \$this->db->prepare(\$sql);\n";
-		$classDef .= "		\$entityToValueInsertArray = $insertCode;\n";
-		$classDef .= "		\$update->execute(\$entityToValueInsertArray);\n";
-		$classDef .= "	}\n";
-		$classDef .= "\n";
-		$classDef .= "	public function add()\n";
-		$classDef .= "	{\n";
-		$classDef .= "		$addCode";
-		$classDef .= "		\$insert = \$this->db->prepare(\$sql);\n";
-		$classDef .= "		\$entityToValueInsertArray = $insertCode;\n";
-		$classDef .= "		\$insert->execute(\$entityToValueInsertArray);\n";
-		$classDef .= "		\$this->id = \$this->db->lastInsertId();\n";
-		$classDef .= "	}\n";
-		$classDef .= "$updateCode\n";
-		$classDef .= "	public static function getMyFields()\n";
-		$classDef .= "	{\n";
-		$classDef .= "		return $fieldsArray\n";
-		$classDef .= "	}\n";
-		$classDef .= "\n";
-		/**
-		$classDef .= "	\n";
-		$classDef .= "		\n";
-		$classDef .= "		\n";
-		//**/
-		$classDef .= "}\n";
+		$classDef .= "<?php
+		//2ndLayer autogeneration of classes with DbConnector
+		class $className {
+			const ENTITYNAME=\"'.$entityName.'\";'
+			private \$db;
+			$varDef;
+			public static \$myLabels = $labelsArray
+
+			public function __construct(&\$db = false)
+			{
+				$classDef .= \"		if(\$db)
+				{
+					\$this->setDb(\$db);
+				}
+			}
+			
+			public static function getMyEntityName(){return self::ENTITYNAME;}
+			public function getId(){return \$this->id;}
+			public function setDb(&\$db){\$this->db=\$db;}
+		
+			public function save()
+			{
+				\$sql = 'UPDATE '.self::ENTITYNAME.' SET ';
+				\$sql .= \"$saveCode\";
+				\$sql .=' WHERE id='.\$this->id;
+				\$update = \$this->db->prepare(\$sql);
+				\$entityToValueInsertArray = $insertCode;
+				\$update->execute(\$entityToValueInsertArray);
+			}
+			
+			public function add()
+			{
+				$addCode
+				\$insert = \$this->db->prepare(\$sql);
+				\$entityToValueInsertArray = $insertCode;
+				\$insert->execute(\$entityToValueInsertArray);
+				\$this->id = \$this->db->lastInsertId();
+			}
+			$updateCode
+			public static function getMyFields()
+			{
+				return $fieldsArray
+			}
+		}";
 		return $classDef;
 	}
 	private function genFieldsArrayCode($attribs)
