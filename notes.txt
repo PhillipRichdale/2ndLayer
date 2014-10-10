@@ -1,0 +1,16 @@
+2ndLayer Project Notes
+
+2Do:
+	- parse DB Table comments
+	- parse for farEntity, etc.
+	- resolve n:m relations in tables named entity_role
+
+		private void initDellaCardinalityTypes()
+		{
+			this.dellaCardinalityTypes.Add("0-1", "0-1");
+			this.dellaCardinalityTypes.Add("0-*", "0-*");
+			this.dellaCardinalityTypes.Add("1", "1");
+			this.dellaCardinalityTypes.Add("1-*", "1-*");
+		}
+		public void buildProjectView (Project activeProject) {}
+		public void loadConfig() {}
