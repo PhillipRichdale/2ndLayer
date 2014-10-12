@@ -9,11 +9,16 @@
 		public $attrib1;
 		public $attrib2;
 		public $attrib3;
-
+		
+		public $_role1;
+		public $_role2;
+		
 		public static $myLabels = array(
 			"attrib1" => "Attrib1",
 			"attrib2" => "Attrib2",
-			"attrib3" => "Attrib3"
+			"attrib3" => "Attrib3",
+			"_role1" => "Role1",
+			"_role2" => "Role2"
 		);
 		
 		public function __construct(&$db = false)
@@ -22,6 +27,21 @@
 			{
 				$this->setDb($db);
 			}
+			
+			//0-1, 0-*, 1, 1-*,
+			$this->_role1 = function()
+			{
+				$sql = "SELECT * FROM farEntity WHERE templateentity_id=$id";
+				$dataFetch = $this->db->prepare($sql);
+				$dataFetch->execute();
+				return $dataFetch->fetchAll(PDO::FETCH_ASSOC);
+			};
+			
+			//role with n:m-rel
+			$this->_role2 = function()
+			{
+				$sql = "SELECT [FarId] FROM thisEntity_farEntity WHERE templateentity_id=$id";
+			};
 		}
 		
 		public static function getMyEntityName(){return self::ENTITYNAME;}
@@ -92,5 +112,10 @@
 			);
 			$insert->execute($entityToValueInsertArray);
 			$this->id = $this->db->lastInsertId();
+		}
+		
+		public function _role1()
+		{
+			
 		}
 	}
