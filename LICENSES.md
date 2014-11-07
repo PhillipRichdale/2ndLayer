@@ -77,6 +77,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ---
 
 The jQuery Projects - to be found in the "jquery..."-folders - are released under the MIT License, just as the 2ndLayer Project itself.
+
 ---
 The bold and light typefaces of Christian Robertsons Font 'Roboto' - to be found in the 'fonts' folder - are licensed under the Apache 2 License:
 
