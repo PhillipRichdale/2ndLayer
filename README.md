@@ -6,6 +6,8 @@ and libraries for environments running PHP 5.3 and up. The prime objective of
 the 2ndLayer project is to provide professional developers with tools that
 significantly speed up day-to-day development work with new and existing projects.
 
+---
+
 The MIT License (MIT)
 
 Copyright (c) 2013 and onward - The 2ndLayer Team
@@ -47,3 +49,43 @@ code that PROVE beyond any doubt dual/multiple license and/or dual/multiple
 ownership, the MIT License of the 2ndLayer codbase and its subsets takes precedance
 and is henceforth the ONLY license under which said 2ndLayer codebase or subset is
 allowed to be used or further developed on for the existing sourcecode in question.
+
+=============================================================================
+
+**2ndLayer comes with other awesome free open source software projects - unmodified, but simply bundled for your convenience:**
+
+**[Polymer Web Components](http://www.polymer-project.org/)** and **[jQuery](http://jquery.org/), [jQuery UI](http://jqueryui.com/) & [jQuery Mobile](http://jquerymobile.com/)**
+
+The Polymer Components are released under the BSD License:
+
+Copyright (c) 2014 The Polymer Authors. All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are
+met:
+   * Redistributions of source code must retain the above copyright
+notice, this list of conditions and the following disclaimer.
+   * Redistributions in binary form must reproduce the above
+copyright notice, this list of conditions and the following disclaimer
+in the documentation and/or other materials provided with the
+distribution.
+   * Neither the name of Google Inc. nor the names of its
+contributors may be used to endorse or promote products derived from
+this software without specific prior written permission.
+
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+---
+
+The jQuery Projects are released under the MIT License, just as the 2ndLayer Project itself.
