@@ -1,0 +1,27 @@
+@font-face {
+	font-family: 'flowRegular';
+	src: url('flowRegular.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'flowRegularItalic';
+	src: url('flowRegularItalic.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'flowBold';
+	src: url('flowBold.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'flowBoldItalic';
+	src: url('flowBoldItalic.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+}

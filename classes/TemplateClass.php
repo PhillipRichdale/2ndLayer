@@ -40,7 +40,7 @@
 			//role with n:m-rel
 			$this->_role2 = function()
 			{
-				$sql = "SELECT [FarId] FROM thisEntity_farEntity WHERE templateentity_id=$id";
+				$sql = "SELECT [FarId] FROM thisEntity_role2 WHERE templateentity_id=$id";
 			};
 		}
 		

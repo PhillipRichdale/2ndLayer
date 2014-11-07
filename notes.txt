@@ -3,7 +3,7 @@
 2Do:
 	- parse DB Table comments
 	- parse for farEntity, etc.
-	- resolve n:m relations in tables named entity_role
+	- resolve n:m relations in tables named entity_role (..._fulfillingEntity?)
 
 		private void initDellaCardinalityTypes()
 		{
