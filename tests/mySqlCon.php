@@ -5,4 +5,4 @@
 	include '../config.php';
 	include "$path/classes/MySqlConnector.php";
 	$mySqlCon = new MySqlConnector();
-	//$mySqlCon();
+	$mySqlCon();

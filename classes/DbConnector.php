@@ -38,6 +38,7 @@ class DbConnector {
 				$this->dbPw
 			);
 		} catch (Exception $exc) {
+			echo "fail";
 			echo $exc->getTraceAsString();
 		}
 	}
