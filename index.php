@@ -5,7 +5,7 @@
 	include 'classes/TemplateClass.php';
 	
 	$tp = new TemplateClass();
-	$
+	$tp
 ?>
 
 </body></html>
