@@ -46,23 +46,9 @@
 			//0-* for hasZeroToMany farEntities in templateentity
 			$this->_role2 = function()
 			{
-				$sql = "SELECT farentity2_id FROM thisEntity_role2 WHERE templateentity_id=$id";
-				$dataFetch = $this->db->prepare($sql);
-				$dataFetch->execute();
-				$assocList = $dataFetch->fetchAll(PDO::FETCH_ASSOC);
-				$farEntityList = array();
-				foreach($assocList as $assoc)
-				{
-					$sql = "SELECT * FROM farEntity2 WHERE id=".$assoc['farentity2_id'];
-					$dataFetch = $this->db->prepare($sql);
-					$dataFetch->execute();
-					$farEntityList[] = $dataFetch->fetch(PDO::FETCH_ASSOC);
-				}
-				return $farEntityList;
-				
 				function assertIsNoRole($val){return false == strpos($val, "_");}
-				function addInComma($val1, $val2){return $val1.", farEntity2.".$val2." AS $val2";}
-				$farAttribs = array_reduce(array_filter(array_keys(farEntity2::myLabels()), 'assertIsNoRole'), 'addInComma');
+				function addInSql($val1, $val2){return $val1.", farEntity2.".$val2." AS $val2";}
+				$farAttribs = array_reduce(array_filter(array_keys(farEntity2::myLabels()), 'assertIsNoRole'), 'addInSql');
 			
 				$sql = "SELECT relation.templateentity_id AS thisId, relation.farentity2_id AS thatId, $farAttribs"
 					. "FROM thisEntity_role2 INNER JOIN farEntity2 ON thatId = farEntity2.id AND thisId=$id";
