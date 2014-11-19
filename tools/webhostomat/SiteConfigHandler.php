@@ -23,6 +23,9 @@ class SiteConfigHandler
 		$newConfig = str_replace("###DOMAIN_STRING###", $this->domainString, $newConfig);
 		$newConfig = str_replace("###DOCUMENT_ROOT###", $this->docRoot, $newConfig);
 		file_put_contents("/etc/apache2/sites-available/".$this->newConfigFileName , $newConfig);
+		
+		$message = exec("ln -s /etc/apache2/sites-available/".$this->newConfigFileName.
+		" /etc/apache2/sites-enabled/".getNextEnabledNumber().$this->newConfigFileName);
 	}
 	public function listValidDirectories()
 	{
@@ -31,9 +34,8 @@ class SiteConfigHandler
 		$temp = array_filter($temp, $callback);
 		return $temp;
 	}
-	public function restartApache()
+	public function restartApache($pause = 10;)
 	{
-		$pause = 10;
 		$message = exec("service apache2 restart");
 		sleep($pause);
 		return "Apache service restartet $pause seconds ago. Message: '".$message."'.";
@@ -41,5 +43,9 @@ class SiteConfigHandler
 	private function checkDirPath($path)
 	{
 		return strlen($path) > 2;
+	}
+	private function getNextEnabledNumber()
+	{
+		$enabledRaw = exec("ls -A /etc/apache2/sites-enabled/");
 	}
 }
