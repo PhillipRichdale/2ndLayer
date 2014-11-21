@@ -34,11 +34,10 @@ class SiteConfigHandler
 		$temp = array_filter($temp, $callback);
 		return $temp;
 	}
-	public function restartApache($pause = 10;)
+	public function restartApache()
 	{
 		$message = exec("service apache2 restart");
-		sleep($pause);
-		return "Apache service restartet $pause seconds ago. Message: '".$message."'.";
+		return "Apache service restartet ($message). Refresh this view after 10 seconds.";
 	}
 	private function checkDirPath($path)
 	{
@@ -46,6 +45,11 @@ class SiteConfigHandler
 	}
 	private function getNextEnabledNumber()
 	{
-		$enabledRaw = exec("ls -A /etc/apache2/sites-enabled/");
+		//$enabledRaw = exec("ls -A /etc/apache2/sites-enabled/");
+		$enabledArray = scandir("/etc/apache2/sites-enabled/");
+		function isVhost($filename){return preg_match("\d\d\d", $filename) == 1;}
+		array_filter($enabledArray, 'isVhost');
+		rsort($enabledArray);
+		$enabledArray[0];
 	}
 }
