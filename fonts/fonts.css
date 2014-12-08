@@ -1,27 +1,27 @@
 @font-face {
-	font-family: 'flowRegular';
+	font-family: 'flowMain';
 	src: url('flowRegular.woff') format('woff');
 	font-weight: normal;
 	font-style: normal;
 }
 
 @font-face {
-	font-family: 'flowRegularItalic';
+	font-family: 'flowMain';
 	src: url('flowRegularItalic.woff') format('woff');
 	font-weight: normal;
-	font-style: normal;
+	font-style: italic;
 }
 
 @font-face {
-	font-family: 'flowBold';
+	font-family: 'flowMain';
 	src: url('flowBold.woff') format('woff');
-	font-weight: normal;
+	font-weight: bold;
 	font-style: normal;
 }
 
 @font-face {
-	font-family: 'flowBoldItalic';
+	font-family: 'flowMain';
 	src: url('flowBoldItalic.woff') format('woff');
-	font-weight: normal;
-	font-style: normal;
+	font-weight: bold;
+	font-style: italic;
 }
