@@ -1,7 +1,7 @@
 <?php
 /**
- * Description of DbConnector
- *
+ * 2ndLayer DbConnector
+ * MIT Licence - Team Active Content
  * @author actcontpr
  */
 
@@ -38,7 +38,7 @@ class DbConnector {
 				$this->dbPw
 			);
 		} catch (Exception $exc) {
-			echo "fail";
+			echo "2ndLayer DbConnector sais: Failure attempting to connect to database.";
 			echo $exc->getTraceAsString();
 		}
 	}
