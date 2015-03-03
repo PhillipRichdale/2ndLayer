@@ -10,20 +10,21 @@
 		public function __contruct(){}
 		public function saveRunDate()
 		{
-			# Schreibt das Datum des Laufzeitpunkts in das
-			# Verzeichnis der aufrufenden Datei als Datei
-			# mit dem Dateinnamenformat >[filename]_lastrun.dat<
-			$dateiName = substr(basename(__file__),0,-4)."_lastrun.dat";
+			# Writes the date of the runtime of this function into the
+			# directory of the file that called this function with
+			# the Filenameformat >[filename]_lastrun.dat<
+			$dateiName = substr(basename(__file__),0,-4)."_lastrunDate.dat";
 			$datei = fopen($dateiName, 'w') or die("can't open file");
 			fwrite($datei, date("Y-m-d"));
 			fclose($datei);
 		}
 		public function saveRunDay()
 		{
-			# Schreibt den Unixtag in das
+			# Writes the Unixday into the Directory of the calling File
+			# as a File with the filenameformat >[filename]_lastrunDay.dat<
 			# Verzeichnis der aufrufenden Datei als Datei
-			# mit dem Dateinnamenformat >[filename]_lastrun.dat<
-			$dateiName = substr(basename(__file__),0,-4)."_lastrun.dat";
+			# mit dem Dateinnamenformat >[filename]_lastrunUnixDay.dat<
+			$dateiName = substr(basename(__file__),0,-4)."_lastrunUnixDay.dat";
 			$datei = fopen($dateiName, 'w') or die("can't open file");
 			$date = new DateTime();
 			fwrite($datei, (string) floor($date->getTimestamp() / (3600 * 24)));
@@ -34,10 +35,10 @@
 			# Zeigt die Zeit seit dem letzten Lauf des Skripts in
 			# Tagen an (liesst das gespeicherte Datum in [filename]_lastrun.dat)
 			$hits = array();
-			$dateiName = substr(basename(__file__),0,-4)."_lastrun.dat";
+			$dateiName = substr(basename(__file__),0,-4)."_lastrunUnixDay.dat";
 			$datei = fopen($dateiName, 'r');
 			$contents = fread($datei, filesize($dateiName));
-			print_r($contents);
+			//print_r($contents);
 			$date = new DateTime();
 			return floor($date->getTimestamp() / (3600 * 24)) - (int) $contents;
 		}
