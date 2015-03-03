@@ -22,9 +22,9 @@ class DbConnector {
 					$dbPw=""
 	){
 		$this->dbServerType = $dbServerType;
-		$this->dbHost=$dbHost;
-		$this->dbPort=$dbPort;
-		$this->dbName=$dbName;
+		$this->dbHost = $dbHost;
+		$this->dbPort = $dbPort;
+		$this->dbName = $dbName;
 		$this->dbUser = $dbUser;
 		$this->dbPw = $dbPw;
 
