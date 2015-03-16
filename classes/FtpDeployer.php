@@ -70,7 +70,7 @@
 			return exec (
 					"git --git-dir=".$this->pathToRepoDir.
 					"/.git diff-tree -r --no-commit-id --name-only --diff-filter=ACMRT ".
-					$this->fromCommit." ".$this->fromCommit
+					$this->fromCommit." ".$this->toCommit
 			);
 		}
 		//
