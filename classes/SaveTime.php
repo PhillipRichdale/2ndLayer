@@ -1,11 +1,12 @@
 <?php
 	/** 2ndLayer Toolkit - SaveTime
-	 * These functions save the time when they've run into a file.
+	 * These functions save the time at which they have run into a file.
 	 * This is a utility class for testing wether a specific portion
-	 * of code or a PHP script has run at a certain time
+	 * of code or a PHP script has run at a certain time. Usefull for
+	 * testing cron jobs and stuff.
 	 **/
 
-	class SaveTime()
+	class SaveTime
 	{
 		public function __contruct(){}
 		public function saveRunDate()
