@@ -13,18 +13,24 @@ class Generator {
 	}
 	public function genClassesFromDb()
 	{
+		if ('cli' === PHP_SAPI) 
+		{ 
+			$lineBreak = "\n";
+		} else {
+			$lineBreak = "<br/>\n";
+		}
 		$el = $this->getEntityList();
 		foreach ($el as $entityName)
 		{
 			$className = ucfirst($entityName);
 			$attribs = $this->getEntityAttributeList($entityName);
-			echo "writing classes/$className.php<br />\n";
+			echo "writing classes/$className.php$lineBreak";
 			file_put_contents(
 						"classes/$className.php",
 						$this->makeTypeClass($className, $attribs, $entityName)
 				);
 		}
-		echo "finished writing classes<br />\n";
+		echo "finished writing classes$lineBreak";
 	}
 	public function getEntityClassNamesFromDb()
 	{
@@ -43,6 +49,13 @@ class Generator {
 			$this->db->query("TRUNCATE TABLE $eName");
 			$this->db->query("ALTER TABLE $eName AUTO_INCREMENT = 1");
 		}
+	}
+	private function mayOverride($className)
+	{
+		$rM = false;
+		//check if classfile exists
+		//instance class
+		//
 	}
 	private function getEntityList()
 	{
@@ -95,7 +108,12 @@ class Generator {
 		
 		$classDef .= "<?php
 		//2ndLayer autogeneration of classes with DbConnector
-	class $className {
+	class $className
+	{	
+		//change this to false if you've modified the class
+		//and don't want the Generator to override this class:
+		public static \$mayOverride = true;
+		
 		const ENTITYNAME=\"$entityName\";
 		private \$db;
 $varDef
