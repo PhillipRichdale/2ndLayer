@@ -95,48 +95,51 @@ class Generator {
 		
 		$classDef .= "<?php
 		//2ndLayer autogeneration of classes with DbConnector
-		class $className {
-			const ENTITYNAME=\"'.$entityName.'\";'
-			private \$db;
-			$varDef;
-			public static \$myLabels = $labelsArray
+	class $className {
+		const ENTITYNAME=\"$entityName\";
+		private \$db;
+$varDef
+		public static \$myLabels = $labelsArray
 
-			public function __construct(&\$db = false)
+		public function __construct(&\$db = false)
+		{
+			if(\$db)
 			{
-				$classDef .= \"		if(\$db)
-				{
-					\$this->setDb(\$db);
-				}
+				\$this->setDb(\$db);
 			}
+		}
+
+		public static function getMyEntityName(){return self::ENTITYNAME;}
+		public function getId(){return \$this->id;}
+		public function setDb(&\$db){\$this->db=\$db;}
+
+		public function save()
+		{
+			\$sql = 'UPDATE '.self::ENTITYNAME.' SET ';
+			\$sql .= \"
+			$saveCode\";
+				
+			\$sql .=' WHERE id='.\$this->id;
 			
-			public static function getMyEntityName(){return self::ENTITYNAME;}
-			public function getId(){return \$this->id;}
-			public function setDb(&\$db){\$this->db=\$db;}
-		
-			public function save()
-			{
-				\$sql = 'UPDATE '.self::ENTITYNAME.' SET ';
-				\$sql .= \"$saveCode\";
-				\$sql .=' WHERE id='.\$this->id;
-				\$update = \$this->db->prepare(\$sql);
-				\$entityToValueInsertArray = $insertCode;
-				\$update->execute(\$entityToValueInsertArray);
-			}
-			
-			public function add()
-			{
-				$addCode
-				\$insert = \$this->db->prepare(\$sql);
-				\$entityToValueInsertArray = $insertCode;
-				\$insert->execute(\$entityToValueInsertArray);
-				\$this->id = \$this->db->lastInsertId();
-			}
-			$updateCode
-			public static function getMyFields()
-			{
-				return $fieldsArray
-			}
-		}";
+			\$update = \$this->db->prepare(\$sql);
+			\$entityToValueInsertArray = $insertCode;
+			\$update->execute(\$entityToValueInsertArray);
+		}
+
+		public function add()
+		{
+			$addCode
+			\$insert = \$this->db->prepare(\$sql);
+			\$entityToValueInsertArray = $insertCode;
+			\$insert->execute(\$entityToValueInsertArray);
+			\$this->id = \$this->db->lastInsertId();
+		}
+		$updateCode
+		public static function getMyFields()
+		{
+			return $fieldsArray
+		}
+	}";
 		return $classDef;
 	}
 	private function genFieldsArrayCode($attribs)
@@ -146,11 +149,11 @@ class Generator {
 		{
 			if ("id" != $attrib)
 			{
-				$fc .= '			"'.$attrib.'",'."\n";
+				$fc .= '				"'.$attrib.'",'."\n";
 			}
 		}
 		$rM = substr($fc,0,-2);
-		$rM .= "\n		);";
+		$rM .= "\n			);";
 		return $rM;
 	}
 	private function genLabelArrayCode($attribs)
@@ -182,7 +185,7 @@ class Generator {
 			} else {
 				$access = "public";
 			}
-			$varDef .= "	$access \$".$attrib.";\n";
+			$varDef .= "		$access \$".$attrib.";\n";
 		}
 		return $varDef;
 	}
@@ -193,7 +196,7 @@ class Generator {
 		{
 			if("id" != $key)
 			{
-				$rM .= "			\"$key\" => \$this->".$key.", \n";
+				$rM .= "				\"$key\" => \$this->".$key.", \n";
 			}
 		}
 		$rM = substr($rM,0,-3);
@@ -207,7 +210,7 @@ class Generator {
 		{
 			if ("id" != $attrib)
 			{
-				$rM .= "			$attrib=:$attrib, \n";
+				$rM .= "				$attrib=:$attrib, \n";
 			}
 		}
 		$rM = substr($rM,0,-3);
