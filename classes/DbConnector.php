@@ -38,7 +38,7 @@ class DbConnector {
 				$this->dbPw
 			);
 		} catch (Exception $exc) {
-			echo "2ndLayer DbConnector sais: Failure attempting to connect to database.";
+			echo "2ndLayer DbConnector says: Failure attempting to connect to database.";
 			echo $exc->getTraceAsString();
 		}
 	}
