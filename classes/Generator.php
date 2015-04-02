@@ -25,7 +25,9 @@ class Generator {
 		{
 			$className = ucfirst($entityName);
 			$attribs = $this->getEntityAttributeList($entityName);
+			
 			$mayOverride = true;
+			
 			if(file_exists($classFile = "classes/$className.php"))
 			{
 				require_once($classFile);
@@ -62,13 +64,6 @@ class Generator {
 			$this->db->query("TRUNCATE TABLE $eName");
 			$this->db->query("ALTER TABLE $eName AUTO_INCREMENT = 1");
 		}
-	}
-	private function mayOverride($className)
-	{
-		$rM = false;
-		//check if classfile exists
-		//instance class
-		//
 	}
 	private function getEntityList()
 	{
@@ -118,6 +113,7 @@ class Generator {
 		$addCode = $this->genInsertSqlCode($attribs);
 		$labelsArray = $this->genLabelArrayCode($attribs);
 		$updateCode = $this->getUpdateCode();
+		$sizesArray = $this->genSizeArrayCode($attribs);
 		
 		$classDef .= "<?php
 	//2ndLayer autogeneration of classes with DbConnector
@@ -131,6 +127,8 @@ class Generator {
 		private \$db;
 $varDef
 		public static \$myLabels = $labelsArray
+
+		public static \$mySizes = $sizesArray
 
 		public function __construct(&\$db = false)
 		{
@@ -198,7 +196,31 @@ $varDef
 				("isTest" != $attrib)
 			)
 			{
-				$fc .= '			"'.$attrib.'" => "'.  ucfirst($attrib).'",'."\n";
+				$fc .= '			"'.$attrib.'" => "'.  ucfirst($attrib).'",'."\n";  
+			}
+		}
+		$rM = substr($fc,0,-2);
+		$rM .= "\n		);";
+		return $rM;
+	}
+	private function getSizeNumber($type)
+	{
+		$hits = array();
+		preg_match('/\d+/', $type, $hits);
+		return $hits[0];
+	}
+	private function genSizeArrayCode($attribs)
+	{
+		$fc = "array(\n";
+		foreach($attribs as $key => $val)
+		{
+			if (
+				("id" != $key)
+				&&
+				("isTest" != $key)
+			)
+			{
+				$fc .= '			"'.$key.'" => '.  $this->getSizeNumber($val).','."\n";
 			}
 		}
 		$rM = substr($fc,0,-2);
