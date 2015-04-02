@@ -13,22 +13,35 @@ class Generator {
 	}
 	public function genClassesFromDb()
 	{
-		if ('cli' === PHP_SAPI) 
+		if ('cli' === PHP_SAPI)
 		{ 
 			$lineBreak = "\n";
 		} else {
 			$lineBreak = "<br/>\n";
 		}
+		
 		$el = $this->getEntityList();
 		foreach ($el as $entityName)
 		{
 			$className = ucfirst($entityName);
 			$attribs = $this->getEntityAttributeList($entityName);
-			echo "writing classes/$className.php$lineBreak";
-			file_put_contents(
-						"classes/$className.php",
-						$this->makeTypeClass($className, $attribs, $entityName)
+			$mayOverride = true;
+			if(file_exists($classFile = "classes/$className.php"))
+			{
+				require_once($classFile);
+				$thisClass = new $className();
+				$mayOverride = $thisClass::$mayOverride;
+			}
+			if ($mayOverride)
+			{
+				echo "writing classes/$className.php$lineBreak";
+				file_put_contents(
+					"classes/$className.php",
+					$this->makeTypeClass($className, $attribs, $entityName)
 				);
+			} else {
+				echo "classes/$className.php blocked from overriding. Not (re)generating this class.$lineBreak";
+			}
 		}
 		echo "finished writing classes$lineBreak";
 	}
