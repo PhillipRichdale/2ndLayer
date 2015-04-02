@@ -120,7 +120,7 @@ class Generator {
 		$updateCode = $this->getUpdateCode();
 		
 		$classDef .= "<?php
-		//2ndLayer autogeneration of classes with DbConnector
+	//2ndLayer autogeneration of classes with DbConnector
 	class $className
 	{	
 		//change this to false if you've modified the class
