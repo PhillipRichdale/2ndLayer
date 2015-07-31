@@ -1,28 +1,23 @@
 <?php
-	//2ndLayer FtpDeployer is a class that uses Git CLI to determine a diff between
-	//two versions, each stated by commitcode or tag, and put that set of differences
-	//on a target FTP location. The first version of this is the base functionality for
-	//perhaps a larger deployment toolkit in future versions in 2ndLayer.
+	//2ndLayer FtpChangeFetcher is a class that uses a set of yet to be determined CLI tools
+	//to compare the contents of a remote FTP-mounted directory with the contents of a local 
+	//directory and download those contents that are newer/have been changed/touched compared
+	//with the local files and directories.
+	//It dumpes a list of the files updated from the remote location either to standard out or
+	//a textfile, for further processing by versioning and/or distribution/deployment systems.
 
-	class FtpDeployer
-	{
-		private $pathToRepoDir;
-		private $fromCommit;
-		private $toCommit;
-		
+	class FtpChangeFetcher
+	{	
 		private $ftpHost;
 		private $ftpUser;
 		private $ftpPw;
 		private $remoteFtpRootPathToBaseDir;
+		private $remoteRelativeFtpPath;
 		
 		private $ftpStream;
 		
-		//git --git-dir=[PathToRepo]/.git diff-tree -r --no-commit-id --name-only --diff-filter=ACMRT [FromCommit] [ToCommit]
-		public function __construct($pathToRepoDir, $fromCommit, $toCommit)
+		public function __construct()
 		{
-			$this->pathToRepoDir = $pathToRepoDir;
-			$this->fromCommit = $fromCommit;
-			$this->toCommit = $toCommit;
 		}
 		public function setFtp($ftpHost, $ftpUser, $ftpPw, $remoteFtpRootPathToBaseDir)
 		{
@@ -31,20 +26,13 @@
 			$this->ftpPw = $ftpPw;
 			$this->remoteFtpRootPathToBaseDir = $remoteFtpRootPathToBaseDir;
 		}
-		public function deploy()
+		public function syncRemoteToLocal()
 		{
 			try {
 				$this->ftpStream = ftp_connect($this->ftpHost);
 			} catch (Exception $e) {
 				echo "FTP stream couldn't be opened. -> ".$e->getMessage();
 			}
-			
-			/**
-			try {
-				
-			} catch (Exception $e) {
-				
-			} //**/
 			
 			if (@ftp_login($this->ftpStream, $this->ftpUser, $this->ftpPw))
 			{} else {
@@ -67,13 +55,4 @@
 			
 			ftp_close($this->ftpStream);
 		}
-		private function makeDiffList()
-		{
-			return exec (
-					"git --git-dir=".$this->pathToRepoDir.
-					"/.git diff-tree -r --no-commit-id --name-only --diff-filter=ACMRT ".
-					$this->fromCommit." ".$this->toCommit
-			);
-		}
-		//
 	}
