@@ -1,5 +1,20 @@
 <?php
 	/** 2ndLayer Toolkit - CsvIterator
+	 * This class opens and itereates across a CSV file (default field seperator is ',') 
+	 * and executes a callback function on each extracted line. String delimiters inkl. 
+	 * parenthesis aren't expected and are removed.
+	 * 
+	 * The param passed to the callback function is an assoc array with the columname 
+	 * as key and the accompaning value.
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
 	 * Diese Klasse öffnet und iteriert über eine CSV Datei (der Trenner ','
 	 * ist als Vorgabe eingestellt) und führt für jede enthaltene Zeile eine übergebene
 	 * Callbackfunktion mit der Zeile als Parameter aus. String Delimiter,
@@ -40,8 +55,7 @@
 		
 		private $seperator;
 		
-		// mit einem delay von 12 Sekunden schaffen wir 7200 Mails in 24 Stunden,
-		// das passt und sollte auch die schwächste Mailumgebung schonen
+		// Delay default 12 seconds
 		public function __construct($callbackObject, $callbackFunction, $seperator=",", $delay=12)
 		{
 			$this->callbackObject = $callbackObject;
