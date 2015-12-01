@@ -14,4 +14,7 @@ significantly speed up day-to-day development work with new and existing project
 
 2ndLayer and the jQuery Project are licensed under the MIT License, the Polymer Project is licensed under the BSD license and the Font 'Roboto' is licensed under the Apache 2 license.
 
+**Important Notice:**
+Polymer was recently removed from 2ndLayer due to complexity issues, please download seperately from the Polymer website if you need it! [Hint: You probalby don't.] Read history comments for details on this.
+
 Please refer to the LICENSES.md file for the full written versions of these licenses and to which parts (folders) of the 2ndLayer distribution these licenses apply.
