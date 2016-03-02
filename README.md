@@ -8,11 +8,11 @@ significantly speed up day-to-day development work with new and existing project
 
 -----
 
-**2ndLayer comes with other awesome free open source software projects - unmodified, but simply bundled for your convenience:**
+**2ndLayer comes with other awesome free open source software projects - unmodified, but simply bundled for your convenience.**
 
-**[Polymer Web Components](http://www.polymer-project.org/)**, **[jQuery](http://jquery.org/), [jQuery UI](http://jqueryui.com/) & [jQuery Mobile](http://jquerymobile.com/)** and the bold and light typefaces of Christian Robertsons [**Font 'Roboto'**](http://www.google.com/fonts/specimen/Roboto).
+**[BackboneJS](http://backbonejs.org/)**, **[UnderscoreJS](http://underscorejs.org/) & [PureCSS](http://purecss.io/)** and the bold and light typefaces of Christian Robertsons [**Font 'Roboto'**](http://www.google.com/fonts/specimen/Roboto).
 
-2ndLayer and the jQuery Project are licensed under the MIT License, the Polymer Project is licensed under the BSD license and the Font 'Roboto' is licensed under the Apache 2 license.
+2ndLayer and the BackboneJS Project are licensed under the MIT License, the Underscore Project is licensed under an own license which seems to be a verbatim copy of the MIT License incl. a copyright notice and the Font 'Roboto' is licensed under the Apache 2 license.
 
 **Important Notice:**
 Polymer was recently removed from 2ndLayer due to complexity issues, please download seperately from the Polymer website if you need it! [Hint: You probalby don't.] Read history comments for details on this.
