@@ -7,6 +7,13 @@ the 2ndLayer project is to provide professional developers with tools that
 significantly speed up day-to-day development work with new and existing projects.
 
 -----
+****Requirements****
+
+[PHP](http://php.net/) 5.3+ & [PHP PDO](http://php.net/manual/en/book.pdo.php)
+
+A runtime environment with PHP 5.3 and up. Furthermore, all the classes providing DB interaction require the PHP PDO extension to be installed. Quite a few, so see to it that PDO is up and running.
+
+-----
 
 **2ndLayer comes with other awesome free open source software projects - unmodified, but simply bundled for your convenience.**
 
