@@ -7,13 +7,16 @@
 	 * The param passed to the callback function is an assoc array with the columname 
 	 * as key and the accompaning value.
 	 * 
+	 * The Callbackobject and Callbackfunction have to be passed to the constructor, a
+	 * numerical delay in seconds is optional. Default is 12 seconds. If false is passed,
+	 * the delay is omitted.
 	 * 
+	 * Data Error Tolerance
+	 * The Iterator automatically skips lines whos fieldnumber doesn't match the amount
+	 * of cells in the first column-name row. At the end of the iteration a string
+	 * message is returned, containing the amount of iterated lines and errors.
 	 * 
-	 * 
-	 * 
-	 * 
-	 * 
-	 * 
+	 *
 	 * 
 	 * Diese Klasse öffnet und iteriert über eine CSV Datei (der Trenner ','
 	 * ist als Vorgabe eingestellt) und führt für jede enthaltene Zeile eine übergebene
@@ -56,12 +59,12 @@
 		private $seperator;
 		
 		// Delay default 12 seconds
-		public function __construct($callbackObject, $callbackFunction, $seperator=",", $delay=12)
+		public function __construct($callbackObject, $callbackFunction, $separator=",", $delay=12)
 		{
 			$this->callbackObject = $callbackObject;
 			$this->callbackFunction = $callbackFunction;
 			$this->callback = array(&$this->callbackObject, $this->callbackFunction);
-			$this->seperator = $seperator;
+			$this->seperator = $separator;
 			$this->delay = $delay;
 		}
 		public function iterateCsvFile($csvFile)
