@@ -1,4 +1,7 @@
 <?php
+	/** 2ndLayer Toolkit - CountryList
+	 */
+	
 class CountryList() {
 	public $countryList = array(
 		"ad" => array("en" => "Andorra", "de" => "Andorra"),
