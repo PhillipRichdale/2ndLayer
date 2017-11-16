@@ -1,5 +1,5 @@
 <?php
-	//2ndLayer - This class handles all aspect of server-side validation
+	//2ndLayer - This class handles all aspects of server-side validation
 	require_once 'Validation.php';
 	class Validator {
 		private $validationChain;
