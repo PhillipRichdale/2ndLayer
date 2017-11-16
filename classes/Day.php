@@ -1,5 +1,6 @@
 <?php
-//2ndLayer - The Day class represents a day in the classic western calendar to be handled as one whishes (utilised in a calendar app, stored in the DB, etc.)
+//2ndLayer - The Day class represents a day in the classic western calendar to be handled as one
+// whishes (utilised in a calendar app, stored in the DB, etc.)
 class Day {
 	const ENTITYNAME="day";
 	private $db;
@@ -7,20 +8,27 @@ class Day {
 	public $day;
 	public $isTest;
 
-	public $myLabels = array("day" => "Day");
-	public $Months = array("-","January","February","March","April","May","June","July","August","September","October","November","December");
-	public $Weekdays = array("Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday");
+	public $myLabels;
+	public $Months;
+	public $Weekdays;
 	
 	//German labes. Uncomment if required.
-	//public $myLabels = array("day" => "Tag");
-	//public $Months = array("-","Januar","Februar","März","April","Mai","Juni","Juli","August","September","Oktober","November","Dezember");
-	//public $Weekdays = array("Sonntag","Montag","Dienstag","Mittwoch","Donnerstag","Freitag","Samstag");
 	
-	public function __construct(&$db = false)
+	public function __construct(&$db = false, $language = "english")
 	{
 		if($db)
 		{
 			$this->setDb($db);
+		}
+		if ("english" == $language)
+		{
+			$this->myLabels = array("day" => "Day");
+			$this->Months = array("-","January","February","March","April","May","June","July","August","September","October","November","December");
+			$this->Weekdays = array("Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday");
+		} else {
+			$this->myLabels = array("day" => "Tag");
+			$this->Months = array("-","Januar","Februar","März","April","Mai","Juni","Juli","August","September","Oktober","November","Dezember");
+			$this->Weekdays = array("Sonntag","Montag","Dienstag","Mittwoch","Donnerstag","Freitag","Samstag");
 		}
 		//German shorthand:
 		//$this->Weekdays = array("So.","Mo.","Di.","Mi.","Do.","Fr.","Sa.");
@@ -174,7 +182,7 @@ class Day {
 			"isTest"
 		);
 	}
-	public buildMyTable()
+	public function buildMyTable()
 	{
 		if ($this->db)
 		{
